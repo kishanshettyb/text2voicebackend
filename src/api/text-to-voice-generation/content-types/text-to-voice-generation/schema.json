@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "text_to_voice_generations",
+  "info": {
+    "singularName": "text-to-voice-generation",
+    "pluralName": "text-to-voice-generations",
+    "displayName": "text-to-voice-generation",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "voice_name": {
+      "type": "string",
+      "required": true
+    },
+    "voice_speed": {
+      "type": "string",
+      "required": true
+    },
+    "audio_format": {
+      "type": "string",
+      "required": true
+    },
+    "audio_url": {
+      "type": "string",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "text_to_voice_generations"
+    },
+    "character_count": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

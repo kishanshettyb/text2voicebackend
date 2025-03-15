@@ -369,6 +369,45 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiTextToVoiceGenerationTextToVoiceGeneration
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'text_to_voice_generations';
+  info: {
+    description: '';
+    displayName: 'text-to-voice-generation';
+    pluralName: 'text-to-voice-generations';
+    singularName: 'text-to-voice-generation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    audio_format: Schema.Attribute.String & Schema.Attribute.Required;
+    audio_url: Schema.Attribute.String & Schema.Attribute.Required;
+    character_count: Schema.Attribute.Integer & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::text-to-voice-generation.text-to-voice-generation'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    voice_name: Schema.Attribute.String & Schema.Attribute.Required;
+    voice_speed: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -856,6 +895,10 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    text_to_voice_generations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::text-to-voice-generation.text-to-voice-generation'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -878,6 +921,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::text-to-voice-generation.text-to-voice-generation': ApiTextToVoiceGenerationTextToVoiceGeneration;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
