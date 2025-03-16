@@ -9,7 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -70,6 +70,12 @@
       "relation": "oneToMany",
       "target": "api::text-to-voice-generation.text-to-voice-generation",
       "mappedBy": "user"
+    },
+    "fullname": {
+      "type": "string"
+    },
+    "mobile": {
+      "type": "string"
     }
   }
 }
