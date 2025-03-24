@@ -402,6 +402,42 @@ export interface ApiTextToVoiceGenerationTextToVoiceGeneration
     user: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.user'
+    > &
+      Schema.Attribute.Private;
+    voice_name: Schema.Attribute.String & Schema.Attribute.Required;
+    voice_speed: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ApiVoiceVoice extends Struct.CollectionTypeSchema {
+  collectionName: 'voices';
+  info: {
+    description: '';
+    displayName: 'voice';
+    pluralName: 'voices';
+    singularName: 'voice';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    audio_format: Schema.Attribute.String & Schema.Attribute.Required;
+    audio_url: Schema.Attribute.Text & Schema.Attribute.Required;
+    character_count: Schema.Attribute.Integer & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::voice.voice'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_id: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
     >;
     voice_name: Schema.Attribute.String & Schema.Attribute.Required;
     voice_speed: Schema.Attribute.String & Schema.Attribute.Required;
@@ -907,6 +943,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
+    voices: Schema.Attribute.Relation<'oneToMany', 'api::voice.voice'>;
   };
 }
 
@@ -921,6 +958,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::text-to-voice-generation.text-to-voice-generation': ApiTextToVoiceGenerationTextToVoiceGeneration;
+      'api::voice.voice': ApiVoiceVoice;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
