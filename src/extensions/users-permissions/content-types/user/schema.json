@@ -65,12 +65,6 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "text_to_voice_generations": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::text-to-voice-generation.text-to-voice-generation",
-      "mappedBy": "user"
-    },
     "voices": {
       "type": "relation",
       "relation": "oneToMany",
