@@ -11,24 +11,18 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "uid": {
-      "type": "uid",
-      "required": true
-    },
     "title": {
       "type": "text",
       "required": true
-    },
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "text_to_voice_generation"
     },
     "voices": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::voice.voice"
+    },
+    "uid": {
+      "type": "text",
+      "required": false
     }
   }
 }

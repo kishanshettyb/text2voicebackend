@@ -393,14 +393,10 @@ export interface ApiTextToVoiceGenerationTextToVoiceGeneration
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.Text & Schema.Attribute.Required;
-    uid: Schema.Attribute.UID & Schema.Attribute.Required;
+    uid: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    users_permissions_user: Schema.Attribute.Relation<
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
     voices: Schema.Attribute.Relation<'oneToMany', 'api::voice.voice'>;
   };
 }
@@ -925,10 +921,6 @@ export interface PluginUsersPermissionsUser
     role: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.role'
-    >;
-    text_to_voice_generation: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::text-to-voice-generation.text-to-voice-generation'
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
