@@ -69,7 +69,13 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::voice.voice",
-      "mappedBy": "user_id"
+      "mappedBy": "users_permissions_user"
+    },
+    "text_to_voice_generation": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::text-to-voice-generation.text-to-voice-generation",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

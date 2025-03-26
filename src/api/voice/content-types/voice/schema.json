@@ -23,15 +23,15 @@
       "type": "string",
       "required": true
     },
-    "audio_format": {
-      "type": "string",
-      "required": true
-    },
     "audio_url": {
       "type": "text",
       "required": true
     },
-    "user_id": {
+    "audio_format": {
+      "type": "string",
+      "required": true
+    },
+    "users_permissions_user": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
@@ -40,12 +40,6 @@
     "character_count": {
       "type": "integer",
       "required": true
-    },
-    "text_to_voice_generation": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::text-to-voice-generation.text-to-voice-generation",
-      "inversedBy": "voices"
     }
   }
 }

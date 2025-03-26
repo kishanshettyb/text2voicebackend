@@ -397,6 +397,10 @@ export interface ApiTextToVoiceGenerationTextToVoiceGeneration
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     voices: Schema.Attribute.Relation<'oneToMany', 'api::voice.voice'>;
   };
 }
@@ -424,14 +428,10 @@ export interface ApiVoiceVoice extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     text: Schema.Attribute.Text & Schema.Attribute.Required;
-    text_to_voice_generation: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::text-to-voice-generation.text-to-voice-generation'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    user_id: Schema.Attribute.Relation<
+    users_permissions_user: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.user'
     >;
@@ -925,6 +925,10 @@ export interface PluginUsersPermissionsUser
     role: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.role'
+    >;
+    text_to_voice_generation: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::text-to-voice-generation.text-to-voice-generation'
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
