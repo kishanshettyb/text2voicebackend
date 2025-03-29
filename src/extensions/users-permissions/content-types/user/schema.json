@@ -70,6 +70,12 @@
       "relation": "oneToMany",
       "target": "api::voice.voice",
       "mappedBy": "users_permissions_user"
+    },
+    "subscription": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::subscription.subscription",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

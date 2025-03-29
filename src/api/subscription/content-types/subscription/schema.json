@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscriptions",
+  "info": {
+    "singularName": "subscription",
+    "pluralName": "subscriptions",
+    "displayName": "subscription"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "subscription"
+    },
+    "plan_status": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "cancelled",
+        "expired"
+      ],
+      "required": true
+    },
+    "start_date": {
+      "type": "datetime",
+      "required": true
+    },
+    "end_date": {
+      "type": "datetime",
+      "required": true
+    },
+    "payment_id": {
+      "type": "string",
+      "required": true
+    },
+    "order_id": {
+      "type": "string",
+      "required": true
+    },
+    "plan": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::plan.plan",
+      "inversedBy": "subscription"
+    }
+  }
+}
