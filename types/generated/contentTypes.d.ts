@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
   collectionName: 'plans';
   info: {
+    description: '';
     displayName: 'plan';
     pluralName: 'plans';
     singularName: 'plan';
@@ -387,9 +388,18 @@ export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'> &
       Schema.Attribute.Private;
-    plan_name: Schema.Attribute.Enumeration<['starter', 'advanced', 'premium']>;
-    price_monthly: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    price_yearly: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    plan_name: Schema.Attribute.Enumeration<
+      [
+        'free',
+        'creator_monthly',
+        'creator_yearly',
+        'unlimited_monthly',
+        'unlimited_yearly',
+        'enterprise',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'free'>;
+    price: Schema.Attribute.Decimal & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     subscription: Schema.Attribute.Relation<
       'oneToOne',

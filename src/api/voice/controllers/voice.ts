@@ -2,6 +2,6 @@
  * voice controller
  */
 
-import { factories } from '@strapi/strapi'
+import { factories } from "@strapi/strapi";
 
-export default factories.createCoreController('api::voice.voice');
+export default factories.createCoreController("api::voice.voice");

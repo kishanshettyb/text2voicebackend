@@ -4,7 +4,8 @@
   "info": {
     "singularName": "plan",
     "pluralName": "plans",
-    "displayName": "plan"
+    "displayName": "plan",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,16 +14,16 @@
     "plan_name": {
       "type": "enumeration",
       "enum": [
-        "starter",
-        "advanced",
-        "premium"
-      ]
+        "free",
+        "creator_monthly",
+        "creator_yearly",
+        "unlimited_monthly",
+        "unlimited_yearly",
+        "enterprise"
+      ],
+      "default": "free"
     },
-    "price_monthly": {
-      "type": "decimal",
-      "required": true
-    },
-    "price_yearly": {
+    "price": {
       "type": "decimal",
       "required": true
     },
