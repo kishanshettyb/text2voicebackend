@@ -369,6 +369,43 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCreditUsageCreditUsage extends Struct.CollectionTypeSchema {
+  collectionName: 'credit_usages';
+  info: {
+    description: '';
+    displayName: 'credit_usage';
+    pluralName: 'credit-usages';
+    singularName: 'credit-usage';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    credits_left: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::credit-usage.credit-usage'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subscription: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::subscription.subscription'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
   collectionName: 'plans';
   info: {
@@ -1035,6 +1072,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::credit-usage.credit-usage': ApiCreditUsageCreditUsage;
       'api::plan.plan': ApiPlanPlan;
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::text-to-voice-generation.text-to-voice-generation': ApiTextToVoiceGenerationTextToVoiceGeneration;

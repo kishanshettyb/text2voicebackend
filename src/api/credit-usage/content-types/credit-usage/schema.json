@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "credit_usages",
+  "info": {
+    "singularName": "credit-usage",
+    "pluralName": "credit-usages",
+    "displayName": "credit_usage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "credits_left": {
+      "type": "biginteger",
+      "required": true
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "subscription": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::subscription.subscription"
+    }
+  }
+}
