@@ -31,11 +31,12 @@
       "type": "string",
       "required": true
     },
-    "subscription": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::subscription.subscription",
-      "mappedBy": "plan"
+    "plan_id": {
+      "type": "string"
+    },
+    "credits": {
+      "type": "biginteger",
+      "required": true
     }
   }
 }

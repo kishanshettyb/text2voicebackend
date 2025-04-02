@@ -384,10 +384,12 @@ export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    credits: Schema.Attribute.BigInteger & Schema.Attribute.Required;
     description: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'> &
       Schema.Attribute.Private;
+    plan_id: Schema.Attribute.String;
     plan_name: Schema.Attribute.Enumeration<
       [
         'free',
@@ -401,10 +403,6 @@ export interface ApiPlanPlan extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'free'>;
     price: Schema.Attribute.Decimal & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    subscription: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::subscription.subscription'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -415,6 +413,7 @@ export interface ApiSubscriptionSubscription
   extends Struct.CollectionTypeSchema {
   collectionName: 'subscriptions';
   info: {
+    description: '';
     displayName: 'subscription';
     pluralName: 'subscriptions';
     singularName: 'subscription';
@@ -433,15 +432,14 @@ export interface ApiSubscriptionSubscription
       'api::subscription.subscription'
     > &
       Schema.Attribute.Private;
-    order_id: Schema.Attribute.String & Schema.Attribute.Required;
-    payment_id: Schema.Attribute.String & Schema.Attribute.Required;
     plan: Schema.Attribute.Relation<'oneToOne', 'api::plan.plan'>;
-    plan_status: Schema.Attribute.Enumeration<
+    publishedAt: Schema.Attribute.DateTime;
+    start_date: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    stripe_subscription_id: Schema.Attribute.String;
+    subscription_status: Schema.Attribute.Enumeration<
       ['active', 'cancelled', 'expired']
     > &
       Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    start_date: Schema.Attribute.DateTime & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -997,6 +995,7 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{

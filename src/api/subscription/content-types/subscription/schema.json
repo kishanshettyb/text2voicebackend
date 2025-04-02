@@ -4,7 +4,8 @@
   "info": {
     "singularName": "subscription",
     "pluralName": "subscriptions",
-    "displayName": "subscription"
+    "displayName": "subscription",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,7 +17,7 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "subscription"
     },
-    "plan_status": {
+    "subscription_status": {
       "type": "enumeration",
       "enum": [
         "active",
@@ -33,19 +34,13 @@
       "type": "datetime",
       "required": true
     },
-    "payment_id": {
-      "type": "string",
-      "required": true
-    },
-    "order_id": {
-      "type": "string",
-      "required": true
+    "stripe_subscription_id": {
+      "type": "string"
     },
     "plan": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::plan.plan",
-      "inversedBy": "subscription"
+      "target": "api::plan.plan"
     }
   }
 }

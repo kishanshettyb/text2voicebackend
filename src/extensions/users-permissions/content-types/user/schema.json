@@ -76,6 +76,9 @@
       "relation": "oneToOne",
       "target": "api::subscription.subscription",
       "mappedBy": "users_permissions_user"
+    },
+    "name": {
+      "type": "string"
     }
   }
 }
