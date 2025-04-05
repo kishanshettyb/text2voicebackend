@@ -4,7 +4,8 @@
   "info": {
     "singularName": "payment",
     "pluralName": "payments",
-    "displayName": "payment"
+    "displayName": "payment",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -27,6 +28,11 @@
     },
     "payment_status": {
       "type": "string"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

@@ -409,6 +409,7 @@ export interface ApiCreditUsageCreditUsage extends Struct.CollectionTypeSchema {
 export interface ApiPaymentPayment extends Struct.CollectionTypeSchema {
   collectionName: 'payments';
   info: {
+    description: '';
     displayName: 'payment';
     pluralName: 'payments';
     singularName: 'payment';
@@ -436,6 +437,10 @@ export interface ApiPaymentPayment extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
