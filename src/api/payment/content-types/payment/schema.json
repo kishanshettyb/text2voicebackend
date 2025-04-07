@@ -23,13 +23,11 @@
     "payment_status": {
       "type": "string"
     },
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
-    },
     "amount": {
       "type": "decimal"
+    },
+    "customer_email": {
+      "type": "email"
     }
   }
 }
