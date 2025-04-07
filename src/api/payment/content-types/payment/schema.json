@@ -17,12 +17,6 @@
     "customer_id": {
       "type": "string"
     },
-    "payment_intent_id": {
-      "type": "string"
-    },
-    "amount": {
-      "type": "string"
-    },
     "currency": {
       "type": "string"
     },
@@ -33,6 +27,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "amount": {
+      "type": "decimal"
     }
   }
 }
